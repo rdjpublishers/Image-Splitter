@@ -1180,6 +1180,21 @@ textarea { resize: vertical; min-height: 120px; }
   .tile-actions .btn-full { grid-column: 1; }
 }
 </style>
+
+<style id="rdj-guide-css">
+.rdj-guide{max-width:860px;margin:2.5rem auto 2.5rem;padding:0 1.25rem;color:var(--text);line-height:1.75}
+.rdj-guide h2{font-size:1.4rem;font-weight:700;margin:2rem 0 .75rem;color:var(--text)}
+.rdj-guide h2:first-child{margin-top:0}
+.rdj-guide h3{font-size:1.02rem;font-weight:700;margin:1.25rem 0 .35rem;color:var(--text)}
+.rdj-guide p{font-size:.94rem;color:var(--text-muted);margin:0 0 .85rem}
+.rdj-guide ul,.rdj-guide ol{margin:0 0 1rem 1.25rem;padding:0}
+.rdj-guide li{font-size:.93rem;color:var(--text-muted);margin-bottom:.4rem}
+.rdj-guide strong{color:var(--text)}
+.rdj-guide .rdj-faq{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:.9rem 1.15rem;margin-bottom:.7rem}
+.rdj-guide .rdj-faq h3{margin:0 0 .3rem;font-size:.97rem}
+.rdj-guide .rdj-faq p{margin:0}
+.rdj-guide a{color:var(--accent)}
+</style>
 </head>
 <body>
 
@@ -1270,35 +1285,51 @@ textarea { resize: vertical; min-height: 120px; }
         <div class="panel"><h2><span class="panel-icon"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.42 1.42M4.93 4.93l1.42 1.42M19.07 19.07l-1.42-1.42M4.93 19.07l1.42-1.42M12 2v2m0 16v2m10-10h-2M4 12H2"/></svg></span>Split Settings</h2><label class="field-label" style="margin-bottom:0.5rem">Split Mode</label><div class="mode-tabs" id="modeTabs"><button class="mode-tab" data-mode="horizontal" onclick="setMode('horizontal')"><div class="mode-tab-icon icon-h"></div><span class="mode-tab-name">Horizontal</span></button><button class="mode-tab" data-mode="vertical" onclick="setMode('vertical')"><div class="mode-tab-icon icon-v"></div><span class="mode-tab-name">Vertical</span></button><button class="mode-tab active" data-mode="grid" onclick="setMode('grid')"><div class="mode-tab-icon icon-g"></div><span class="mode-tab-name">Grid</span></button></div><div class="row"><div class="field"><label class="field-label" for="rows">Rows</label><input id="rows" type="number" min="1" value="3" /></div><div class="field"><label class="field-label" for="cols">Columns</label><input id="cols" type="number" min="1" value="3" /></div></div><p id="validationMessage" class="error"></p><div class="actions"><button id="generateBtn" class="btn btn-primary"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>Split Image</button><button id="downloadZipBtn" class="btn" disabled><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download All (.zip)</button></div><h3>Output Tiles</h3><div class="tile-actions"><button id="selectAllBtn" class="btn" disabled>Select All</button><button id="clearSelectionBtn" class="btn" disabled>Clear</button><button id="downloadSelectedBtn" class="btn btn-full" disabled>Download Selected (.zip)</button></div><div id="tilesGrid" class="tiles-grid"></div></div>
       </div>
     </div>
-    <section style="max-width:860px;margin:2.5rem auto 0;padding:0 1.25rem 2.5rem">
-      <h2 style="font-size:1.35rem;font-weight:700;margin-bottom:1.25rem;color:var(--text)">Frequently Asked Questions</h2>
-      <div style="display:flex;flex-direction:column;gap:0.75rem" id="faq-list">
-        <details style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem;cursor:pointer">
-          <summary style="font-weight:600;font-size:0.95rem;list-style:none;display:flex;justify-content:space-between;align-items:center">Is Image Splitter completely free? <span style="font-size:1.1rem;opacity:0.5">＋</span></summary>
-          <p style="margin-top:0.75rem;font-size:0.88rem;opacity:0.75;line-height:1.6">Yes, 100% free with no sign-up, no watermarks, and no hidden charges. You can split as many images as you like.</p>
-        </details>
-        <details style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem;cursor:pointer">
-          <summary style="font-weight:600;font-size:0.95rem;list-style:none;display:flex;justify-content:space-between;align-items:center">Are my images uploaded to a server? <span style="font-size:1.1rem;opacity:0.5">＋</span></summary>
-          <p style="margin-top:0.75rem;font-size:0.88rem;opacity:0.75;line-height:1.6">No. All processing happens entirely in your browser using JavaScript. Your images never leave your device and are never sent to any server.</p>
-        </details>
-        <details style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem;cursor:pointer">
-          <summary style="font-weight:600;font-size:0.95rem;list-style:none;display:flex;justify-content:space-between;align-items:center">What image formats are supported? <span style="font-size:1.1rem;opacity:0.5">＋</span></summary>
-          <p style="margin-top:0.75rem;font-size:0.88rem;opacity:0.75;line-height:1.6">JPG, PNG, and WebP formats are supported. Files up to 50 MB can be processed without any issues.</p>
-        </details>
-        <details style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem;cursor:pointer">
-          <summary style="font-weight:600;font-size:0.95rem;list-style:none;display:flex;justify-content:space-between;align-items:center">What split modes are available? <span style="font-size:1.1rem;opacity:0.5">＋</span></summary>
-          <p style="margin-top:0.75rem;font-size:0.88rem;opacity:0.75;line-height:1.6">You can split images horizontally (into rows), vertically (into columns), or in a grid pattern. Simply choose the mode and set the number of rows and columns you need.</p>
-        </details>
-        <details style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem;cursor:pointer">
-          <summary style="font-weight:600;font-size:0.95rem;list-style:none;display:flex;justify-content:space-between;align-items:center">How do I download the split tiles? <span style="font-size:1.1rem;opacity:0.5">＋</span></summary>
-          <p style="margin-top:0.75rem;font-size:0.88rem;opacity:0.75;line-height:1.6">After splitting, you can download all tiles at once as a ZIP file, or select specific tiles and download only those. Each tile is saved at full quality.</p>
-        </details>
-        <details style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem;cursor:pointer">
-          <summary style="font-weight:600;font-size:0.95rem;list-style:none;display:flex;justify-content:space-between;align-items:center">Can I use this on mobile? <span style="font-size:1.1rem;opacity:0.5">＋</span></summary>
-          <p style="margin-top:0.75rem;font-size:0.88rem;opacity:0.75;line-height:1.6">Yes, Image Splitter works on modern mobile browsers. However, for the best experience with large images, a desktop or laptop is recommended.</p>
-        </details>
-      </div>
-    </section>
+
+    <!-- RDJ original guide content -->
+    <article class="rdj-guide" aria-labelledby="is-guide-title">
+      <h2 id="is-guide-title">About Image Splitter</h2>
+      <p>Image Splitter cuts one picture into a set of equal tiles. Choose how many rows and columns you want, press Split Image, and each tile appears in the Output Tiles area, ready to download. It is useful when a single image needs to be shared, printed or displayed in pieces. Everything runs in your browser, so the image you load is not uploaded to our servers.</p>
+
+      <h2>How to split an image</h2>
+      <ol>
+        <li><strong>Upload.</strong> Drag a JPG, PNG or WebP file into the upload area or click to choose one. Files up to 50 MB are accepted.</li>
+        <li><strong>Choose a split mode.</strong> Horizontal cuts the image into rows, Vertical cuts it into columns, and Grid cuts it into both.</li>
+        <li><strong>Set rows and columns.</strong> Enter whole numbers. A 3 by 3 grid gives nine tiles, and a 1 by 3 split gives three side-by-side panels.</li>
+        <li><strong>Press Split Image.</strong> Each tile is drawn separately so you can check it before saving.</li>
+        <li><strong>Download.</strong> Save every tile at once with Download All (.zip), or tick the tiles you want and use Download Selected (.zip). Use Select All or Clear to change your selection quickly.</li>
+      </ol>
+      <p>Tiles are saved as PNG files named after your original file with the row and column number, for example photo_1-1.png, so they stay in order when you sort the folder.</p>
+
+      <h2>Common uses</h2>
+      <ul>
+        <li><strong>Social media grids and carousels.</strong> Split a wide panorama into equal slides for a swipeable post, or a square picture into a grid for a profile layout.</li>
+        <li><strong>Printing large images.</strong> Divide a poster or map into pieces that fit standard paper, then join them after printing.</li>
+        <li><strong>Puzzles and classroom activities.</strong> Turn a picture into pieces for a jigsaw or a matching game.</li>
+        <li><strong>Web design.</strong> Cut a long graphic into sections that load and lay out separately.</li>
+        <li><strong>Game and app assets.</strong> Break a sheet of images into individual files.</li>
+      </ul>
+
+      <h2>Tips for good results</h2>
+      <ul>
+        <li>Plan the grid around the size of your image. Tile sizes are rounded down to whole pixels, so an image whose width does not divide evenly by the number of columns may lose a pixel or two at the edge.</li>
+        <li>For social posts, check the aspect ratio that the platform expects before you pick rows and columns.</li>
+        <li>Start with a high-resolution source. Splitting does not add detail, so small tiles from a small image will look soft.</li>
+        <li>Very large images with many tiles need more memory. On a phone, try fewer tiles or a smaller image.</li>
+      </ul>
+
+      <h2>Troubleshooting</h2>
+      <p>If you see a validation message, check that rows and columns are whole numbers of at least 1. If your file is rejected, confirm that it is JPG, PNG or WebP and under 50 MB. If the ZIP does not download, make sure your browser allows downloads from this page and try again with fewer tiles.</p>
+
+      <h2>Frequently asked questions</h2>
+      <div class="rdj-faq"><h3>Is Image Splitter free?</h3><p>Yes. It is free, needs no sign-up, and does not add a watermark to your tiles.</p></div>
+      <div class="rdj-faq"><h3>Are my images uploaded to a server?</h3><p>No. The splitting is done by JavaScript in your browser and your image stays on your device. The page does load Google Analytics and Google AdSense, which use cookies. See the <a href="https://rdjpublishers.com/privacy-policy.html">Privacy Policy</a>.</p></div>
+      <div class="rdj-faq"><h3>Which image formats can I use?</h3><p>JPG, PNG and WebP, up to 50 MB per file.</p></div>
+      <div class="rdj-faq"><h3>What split modes are available?</h3><p>Horizontal (rows), Vertical (columns) and Grid (both). Set the number of rows and columns you need.</p></div>
+      <div class="rdj-faq"><h3>How do I download the tiles?</h3><p>Download all tiles in one ZIP file, or select particular tiles and download only those in a ZIP.</p></div>
+      <div class="rdj-faq"><h3>Does it work on mobile?</h3><p>Yes, on modern mobile browsers. For large images or many tiles, a laptop or desktop computer is more comfortable.</p></div>
+    </article>
+
     <footer class="site-footer" role="contentinfo">
       © 2025 <a href="https://rdjpublishers.com/" target="_blank" rel="noopener">RDJ Publishers</a>
       <ul class="site-footer-legal" aria-label="Legal and information">
